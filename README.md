@@ -4,7 +4,7 @@
 
 ### What is jsonc11?
 
-JsonC11 using modern C++11 feature to encode/decode JSON data, the following is the example.
+JsonC11 using modern C++11 features to encode/decode JSON data, the following are some examples.
 
 
 
@@ -20,6 +20,78 @@ Jsonc11 using Bison & Flex to do the lexical and the grammer job. Only contains 
 
 
 
+### Difference
+
+The difference between current version and previous one, was that current version using `std::unique_ptr<>` to manage the memory automatically, no longer for user to free the return memory memory pointer
+
+
+
+### APIs
+
+- Decode the JSON string into Json value
+
+```C++
+Json Json::fromJson(const std::string &json_string);
+```
+
+
+
+- Encode the Json value into JSON string, parameter was the return format: Compact or Indent
+
+```C++
+std::string toJson(Doc::Indent);
+std::string toJson(Doc::Compact);
+```
+
+
+
+- Get value from Json value(array or object)
+
+```C++
+Json operator [](const char *key);
+Json operator [](const std::string &key);
+Json operator [](int index);
+```
+
+
+
+- Get the inner value with the inner type
+
+```c++
+std::string asString();
+int 				asInt();
+double  		asDouble();
+bool 	  		asBool();
+array 			asArray();
+object  		asObject();
+```
+
+
+
+- Check the Json type
+
+```c++
+bool isNull();
+bool isInt();
+bool isBool();
+bool isDouble();
+bool isString();
+bool isArray();
+bool isObject();
+```
+
+
+
+- Append data into the Json type data
+
+```C++
+void arrayPush( const Json& val );
+void objectAppend( Json val );
+void objectAppend( const std::string &key, Json val );
+```
+
+
+
 #### Decoding Example
 
 ```C++
@@ -28,7 +100,7 @@ Jsonc11 using Bison & Flex to do the lexical and the grammer job. Only contains 
 
 int main()
 {
-    Json *v = Json::fromJson(R"(
+    Json v = Json::fromJson(R"(
 {
     "a":"bb",
     "b":"cc",
@@ -39,14 +111,11 @@ int main()
     "g": { "kk":"unix" }
 }
 )");
-    if ( v->hasError() ) {
-      std::cout << v->getErrors();
+    if ( v.hasError() ) {
+      std::cout << v.getErrors();
     } else {
-      std::cout << v->toJson( Doc::Compact );
+      std::cout << v.toJson( Doc::Compact );
     }
-
-    // You shall free the returned memory to forbid memory leak
-    delete v;
 
     return 0;
 }

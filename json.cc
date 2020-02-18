@@ -178,3 +178,67 @@ Json::~Json() {
     this->objectVal.erase(this->objectVal.begin(), this->objectVal.end());
 }
 
+Json Json::operator []( const std::string &key ) {
+    if ( this->isObject() ) {
+        return this->objectVal[ key ];
+    }
+    throw std::bad_cast();
+}
+
+Json Json::operator []( int i ) {
+    if ( this->isArray() ) {
+        return this->arrayVal[i];
+    }
+    throw std::bad_cast();
+}
+
+Json Json::operator []( const char *key ) {
+    if ( this->isObject() ) {
+        return this->objectVal[key];
+    }
+    std::cout << (int)this->type;
+    throw std::bad_cast();
+}
+
+std::string Json::asString() {
+    if ( this->isString() ) {
+        return this->stringVal;
+    }
+    throw std::bad_cast();
+}
+
+int Json::asInt() {
+    if ( this->isInt() ) {
+        return this->intVal;
+    }
+    throw std::bad_cast();
+}
+
+double Json::asDouble() {
+    if ( this->isDouble() ) {
+        return this->doubleVal;
+    }
+    throw std::bad_cast();
+}
+
+bool Json::asBool() {
+    if ( this->isBool() ) {
+        return this->boolVal;
+    }
+    throw std::bad_cast();
+}
+
+Json::array Json::asArray() {
+    if ( this->isArray() ) {
+        return this->arrayVal;
+    }
+    throw std::bad_cast();
+}
+
+Json::object Json::asObject() {
+    if ( this->isObject() ) {
+        return this->objectVal;
+    }
+    throw std::bad_cast();
+}
+

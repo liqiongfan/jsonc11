@@ -3,7 +3,6 @@
 
 #include <map>
 #include <vector>
-#include <list>
 #include <string>
 
 // Json parse function
@@ -42,6 +41,16 @@ struct Json
     Json(object &&object);     // Object
     ~Json();
     
+    Json operator [](const char *key);
+    Json operator [](const std::string &key);
+    Json operator [](int index);
+    std::string asString();
+    int asInt();
+    double asDouble();
+    bool asBool();
+    array asArray();
+    object asObject();
+    
     // Some method for typeChecks
     bool isNull() { return this->type == Type::T_NULL; }
     bool isInt()  { return this->type == Type::T_INT;  }
@@ -60,8 +69,10 @@ struct Json
     std::string toJson(JsonType jsonType = JsonType::Compact );
     
     // Parse JSON from JSON string
-    static Json *fromJson(const std::string &json) {
-        return _parse(json);
+    // Using the std::unique_ptr<Json> to free the memory automatically
+    static Json fromJson(const std::string &json) {
+        std::unique_ptr<Json> v(_parse(json));
+        return *v;
     }
     // Parse error
     Json *setParseError(const std::string &error);
