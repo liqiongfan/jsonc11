@@ -31,7 +31,7 @@ The difference between current version and previous one, was that current versio
 - Decode the JSON string into Json value
 
 ```C++
-Json Json::fromJson(const std::string &json_string);
+static Json Json::fromJson(const std::string &json_string);
 ```
 
 
