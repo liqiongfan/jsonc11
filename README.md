@@ -58,7 +58,7 @@ Json operator [](int index);
 - Get the inner value with the inner type
 
 ```c++
-std::string asString();
+std::string 	 	asString();
 int 			asInt();
 double  		asDouble();
 bool 	  		asBool();
