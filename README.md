@@ -59,7 +59,7 @@ Json operator [](int index);
 
 ```c++
 std::string asString();
-int 				asInt();
+int 			asInt();
 double  		asDouble();
 bool 	  		asBool();
 array 			asArray();
