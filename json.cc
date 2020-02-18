@@ -196,7 +196,6 @@ Json Json::operator []( const char *key ) {
     if ( this->isObject() ) {
         return this->objectVal[key];
     }
-    std::cout << (int)this->type;
     throw std::bad_cast();
 }
 
