@@ -8,6 +8,12 @@ JsonC11 using modern C++11 features to encode/decode JSON data, the following ar
 
 
 
+### Supported types
+
+Jsonc11 supports `null` , `false`, `true` , `int`, `double`, `string`, `array`, `object`, developers should know jsonc11 not support `long int` or `long long int`
+
+
+
 ### Features
 
 Support JSON text contains the comments such as `#` , `//` , or `/**/`
@@ -22,7 +28,7 @@ Jsonc11 using Bison & Flex to do the lexical and the grammer job. Only contains 
 
 ### Difference
 
-The difference between current version and previous one, was that current version using `std::unique_ptr<>` to manage the memory automatically, no longer for user to free the return memory memory pointer
+The difference between current version and previous one, was that current version using `std::unique_ptr<>` to manage the memory automatically, no longer for user to free the return memory pointer
 
 
 
