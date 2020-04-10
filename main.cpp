@@ -5,7 +5,7 @@ int main()
 {
     
     for ( int i = 0; i < 1; ++i ) {
-        Json *v = Json::fromJson(R"(
+        Json v = Json::fromJson(R"(
 {
     "a":"bb",// Hello world
     "b":"cc",# This is my Json parser tool
@@ -18,13 +18,12 @@ Hello world, C++ comments coming*/
     "g": { "kk":"unix" }
 }
 )");
-        if ( v->hasError() ) {
-            std::cout << v->getErrors();
+        if ( v.hasError() ) {
+            std::cout << v.getErrors();
         } else {
-            std::cout << v->toJson( Doc::Indent );
+            std::cout << v.toJson( Doc::Indent );
         }
-        
-        delete v;
+       
     }
 
     return 0;
