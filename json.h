@@ -4,6 +4,9 @@
 #include <map>
 #include <vector>
 #include <string>
+#ifdef __linux__
+#include <memory>
+#endif
 
 // Json parse function
 struct Json;
